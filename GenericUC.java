@@ -11,22 +11,24 @@ public class GenericUC {
 		return max;
 	}
 
-	public static float checkMaximum(Float d, Float e, Float f) {
-		Float max = d;
-		if(e.compareTo(max) > 0) {
-			max = e;
+	public static String checkMaximum(String s1, String s2, String s3) {
+		String max = s1;
+		if(s2.compareTo(max) > 0) {
+			max = s2;
 		}
-		if(f.compareTo(max) > 0) {
-			max = f;
+		if(s3.compareTo(max) > 0) {
+			max = s3;
 		}
 		return max;
 	}
 
 	public static void main(String[] args) {
 		int c = checkMaximum(10,23,15);
-		float d = checkMaximum(12.5f, 13.4f, 22.0f);
+
+		String s = checkMaximum("Apple", "Peach", "Banana");
 		System.out.println(c);
-		System.out.println(d);
+
+		System.out.println(s);
 	}
 
 }
