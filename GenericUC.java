@@ -1,6 +1,15 @@
-public class GenericUC {
+public class GenericUC <T extends Comparable<T>> {
 
-public static <T extends Comparable<T>> T checkMaximum(T x, T y, T z) {
+	T x, y, z;
+
+	public GenericUC(T x, T y, T z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+
+	//determine the largest of three Comparable Ojects
+	public static <T extends Comparable<T>> T checkMaximum(T x, T y, T z) {
 		T max = x;
 		if(y.compareTo(max) > 0) {
 			max = y;
@@ -8,31 +17,33 @@ public static <T extends Comparable<T>> T checkMaximum(T x, T y, T z) {
 		if(z.compareTo(max) > 0) {
 			max = z;
 		}
+		printMax(max);
 		return max;
 	}
 
-	public static <T extends Comparable<T>> T checkMaximum_With_MoreThan_ThreeParameters(T... elements) {
-		T max = elements[0];
-		for(T maximumParametereter : elements) {
-			if(maximumParametereter.compareTo(max) > 0) {
-				max = maximumParametereter;
-			}
+	public static String testMaximum(String x, String y, String z) {
+		String max = x;
+		if(y.compareTo(max) > 0) {
+			max = y; // y is the largset so far
 		}
-		return max;
+		if(z.compareTo(max) > 0) {
+			max = z; // z is the largest now
+		}
+		printMax( max);
+		return max; // returns the largest so for
+	}
+
+	public static <T> void printMax(T max) {
+		System.out.println("Max of Three  is" + max);
 	}
 
 	public static void main(String[] args) {
-		Integer c = checkMaximum(10,23,15);
+		Integer n = checkMaximum(10,23,15);
 		Double d = checkMaximum(12.5, 13.4, 22.0);
-		String s = checkMaximum("Apple", "Peach", "Banana");
-		Integer c1 = checkMaximum_With_MoreThan_ThreeParameters(10,23,15,20,24);
-		Double d1 = checkMaximum_With_MoreThan_ThreeParameters(12.5, 13.4, 22.0,24.0,20.8);
-		String s1 = checkMaximum_With_MoreThan_ThreeParameters("Apple", "Peach", "Banana", "Mango", "Orange");
-		System.out.println(c);
-		System.out.println(d);
-		System.out.println(s);
-		System.out.println(c1);
-		System.out.println(d1);
-		System.out.println(s1);
+		String a = "Apple", b = "peach", c = "Banana";
+		GenericUC.testMaximum(a, b, c);
+		printMax(n);
+		printMax(d);
 	}
+
 }
