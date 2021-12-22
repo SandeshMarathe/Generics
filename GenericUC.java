@@ -1,7 +1,7 @@
 public class GenericUC {
 
-	public static int checkMaximum(Integer x, Integer y, Integer z) {
-		Integer max = x;
+public static <T extends Comparable<T>> T checkMaximum(T x, T y, T z) {
+		T max = x;
 		if(y.compareTo(max) > 0) {
 			max = y;
 		}
@@ -11,24 +11,28 @@ public class GenericUC {
 		return max;
 	}
 
-	public static String checkMaximum(String s1, String s2, String s3) {
-		String max = s1;
-		if(s2.compareTo(max) > 0) {
-			max = s2;
-		}
-		if(s3.compareTo(max) > 0) {
-			max = s3;
+	public static <T extends Comparable<T>> T checkMaximum_With_MoreThan_ThreeParameters(T... elements) {
+		T max = elements[0];
+		for(T maximumParametereter : elements) {
+			if(maximumParametereter.compareTo(max) > 0) {
+				max = maximumParametereter;
+			}
 		}
 		return max;
 	}
 
 	public static void main(String[] args) {
-		int c = checkMaximum(10,23,15);
-
+		Integer c = checkMaximum(10,23,15);
+		Double d = checkMaximum(12.5, 13.4, 22.0);
 		String s = checkMaximum("Apple", "Peach", "Banana");
+		Integer c1 = checkMaximum_With_MoreThan_ThreeParameters(10,23,15,20,24);
+		Double d1 = checkMaximum_With_MoreThan_ThreeParameters(12.5, 13.4, 22.0,24.0,20.8);
+		String s1 = checkMaximum_With_MoreThan_ThreeParameters("Apple", "Peach", "Banana", "Mango", "Orange");
 		System.out.println(c);
-
+		System.out.println(d);
 		System.out.println(s);
+		System.out.println(c1);
+		System.out.println(d1);
+		System.out.println(s1);
 	}
-
 }
